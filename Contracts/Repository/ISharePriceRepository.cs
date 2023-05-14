@@ -9,5 +9,6 @@ namespace Contracts.Repository
 {
     public interface ISharePriceRepository
     {
+        void CreateSharePrice(SharePrice sharePrice);
     }
 }

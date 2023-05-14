@@ -14,5 +14,7 @@ namespace Repository
         {
 
         }
+
+        public void CreateSharePrice(SharePrice sharePrice) => Create(sharePrice);
     }
 }

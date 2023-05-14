@@ -10,5 +10,8 @@ namespace Contracts.Repository
     public interface IShareRepository
     {
         void CreateShare(Share share);
+        Task<Share> GetShareAsync(int shareId, bool trackChanges);
+        Task<List<Share>> GetShareBySymbolAsync(string symbol, bool trackChanges);
+
     }
 }
