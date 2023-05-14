@@ -33,19 +33,11 @@ namespace Repository.Configuration
             builder.Property(e => e.UserPassword)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-
-            //seed data
-            // builder.HasData(
-            //    new IdentityRole
-            //    {
-            //        Name = "Manager",
-            //        NormalizedName = "MANAGER"
-            //    },
-            //new IdentityRole
-            //{
-            //    Name = "Administrator",
-            //    NormalizedName = "ADMINISTRATOR"
-            //});
+            builder.HasData(
+                new EvaUser { Id = 1, FirstName = "John", LastName = "Doe", UserName = "johndoe", Email = "johndoe@email.com", UserPassword = "password123" },
+                new EvaUser { Id = 2, FirstName = "Bob", LastName = "Smith", UserName = "bobsmith", Email = "bobsmith@email.com", UserPassword = "password789" },
+                new EvaUser { Id = 3, FirstName = "Alice", LastName = "Johnson", UserName = "alicejohnson", Email = "alicejohnson@email.com", UserPassword = "password1011" }
+                );
         }
     }
 }
