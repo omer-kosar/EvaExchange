@@ -35,7 +35,13 @@ namespace EvaExchange.API.Controllers
         [HttpPost("BuyShare")]
         public async Task<IActionResult> BuyShare(TradeDto trade)
         {
-            var result = await _serviceManager.PortfolioService.BuyShare(trade, true);
+            await _serviceManager.PortfolioService.BuyShare(trade, true);
+            return NoContent();
+        }
+        [HttpPost("SellShare")]
+        public async Task<IActionResult> SellShare(TradeDto trade)
+        {
+            await _serviceManager.PortfolioService.SellShare(trade, true);
             return NoContent();
         }
     }

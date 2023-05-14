@@ -12,6 +12,6 @@ namespace Contracts.Repository
         void CreateShareAsync(Share share);
         Task<Share> GetShareAsync(int shareId, bool trackChanges);
         Task<List<Share>> GetShareBySymbolAsync(string symbol, bool trackChanges);
-
+        Task<List<Share>> GetAllSharesAsync(bool trackChanges);
     }
 }

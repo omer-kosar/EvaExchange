@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Shared.Enums;
 
 namespace Repository
 {
@@ -17,6 +18,8 @@ namespace Repository
         }
 
         public void CreateShareAsync(Share share) => Create(share);
+
+        public async Task<List<Share>> GetAllSharesAsync(bool trackChanges) => await FindAll(trackChanges).ToListAsync();
 
         public async Task<Share> GetShareAsync(int shareId, bool trackChanges) => await FindByCondition(share => share.Id == shareId, trackChanges)?.SingleOrDefaultAsync();
 

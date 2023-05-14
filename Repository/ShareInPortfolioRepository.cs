@@ -17,7 +17,10 @@ namespace Repository
         }
 
         public void CreateShareInPortfolioAsync(ShareInPortfolio shareInPortfolio) => Create(shareInPortfolio);
-        public async Task<ShareInPortfolio> GetShareInPortfolioByShareIdAsync(int portfolioId, int shareId, bool trackChanges) => 
-            await FindByCondition(sharePrice => sharePrice.PortfolioId == portfolioId && sharePrice.ShareId == shareId, trackChanges).SingleOrDefaultAsync();
+
+        public void DeleteShareInPortfolio(ShareInPortfolio shareInPortfolio) => Delete(shareInPortfolio);
+
+        public async Task<ShareInPortfolio> GetShareInPortfolioByShareIdAsync(int portfolioId, int shareId, bool trackChanges) =>
+            await FindByCondition(shareInPortfolio => shareInPortfolio.PortfolioId == portfolioId && shareInPortfolio.ShareId == shareId, trackChanges).SingleOrDefaultAsync();
     }
 }

@@ -11,5 +11,6 @@ namespace Contracts.Repository
     {
         void CreateShareInPortfolioAsync(ShareInPortfolio shareInPortfolio);
         Task<ShareInPortfolio> GetShareInPortfolioByShareIdAsync(int portfolioId, int shareId, bool trackChanges);
+        void DeleteShareInPortfolio(ShareInPortfolio shareInPortfolio);
     }
 }

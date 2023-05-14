@@ -47,13 +47,29 @@ namespace Service
             bool isShareInPortfolio = await CheckIfShareInPortfolio(trade.PortfolioId, trade.ShareId, trackChanges);
             if (!isShareInPortfolio)
                 AddShareToPortfolio(trade);
+            var tradeEntity = await GetTradeEntityFromTradeDto(trade, trackChanges);
+            _repository.Trade.CreateTradeAsync(tradeEntity);
+            await _repository.SaveAsync();
+            //todo:map trade summary
+            return new ShareSummaryForTradeDto();
+        }
+
+        public async Task SellShare(TradeDto trade, bool trackChanges)
+        {
+            await CheckIfShareExistInPortfolio(trade.PortfolioId, trade.ShareId, trackChanges);
+            await CheckIfPortfolioExist(trade.PortfolioId, trackChanges);
+            //todo: check if shell is sufficient for sale 
+            //todo: if quantity is equal zero after sell extract share from portfolio
+            var tradeEntity = await GetTradeEntityFromTradeDto(trade, trackChanges);
+            _repository.Trade.CreateTradeAsync(tradeEntity);
+            await _repository.SaveAsync();
+        }
+        private async Task<Trade> GetTradeEntityFromTradeDto(TradeDto trade, bool trackChanges)
+        {
             var latestSharePrice = await GetLatestSharePriceAsync(trade.ShareId, trackChanges);
             var tradeEntity = _mapper.Map<Trade>(trade);
             tradeEntity.TradePrice = latestSharePrice.Price;
-            _repository.Trade.CreateTradeAsync(tradeEntity);
-            await _repository.SaveAsync();
-            //map trade summary
-            return new ShareSummaryForTradeDto();
+            return tradeEntity;
         }
         private async Task<bool> CheckIfShareInPortfolio(int portfolioId, int shareId, bool trackChanges)
         {
@@ -102,5 +118,13 @@ namespace Service
             var sharePrice = await _repository.SharePrice.GetLatestSharePriceByShareIdAsync(shareId, trackChanges);
             return sharePrice;
         }
+
+        private async Task CheckIfShareExistInPortfolio(int portfolioId, int shareId, bool trackChanges)
+        {
+            var shareInPortfolio = await _repository.ShareInPortfolioRepository.GetShareInPortfolioByShareIdAsync(portfolioId, shareId, trackChanges);
+            if (shareInPortfolio is null)
+                throw new ShareNotFoundInPortfolioException(portfolioId, shareId);
+        }
+
     }
 }
