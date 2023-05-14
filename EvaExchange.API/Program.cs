@@ -1,5 +1,7 @@
 using Contracts.Repository;
+using EvaExchange.API.Filters;
 using EvaExchange.API.Middlewares;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Repository;
@@ -12,13 +14,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<EvaExchangeContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
 
-builder.Services.AddScoped<IRepositoryManager,RepositoryManager>();
+builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
+builder.Services.Configure<ApiBehaviorOptions>(options =>
+{
+    options.SuppressModelStateInvalidFilter = true;
+});
+builder.Services.AddScoped<ValidationFilterAttribute>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 

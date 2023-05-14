@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EvaExchange.API.Filters;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects.Share;
@@ -7,6 +8,7 @@ namespace EvaExchange.API.Controllers
 {
     [Route("api/shares")]
     [ApiController]
+    [ServiceFilter(typeof(ValidationFilterAttribute))]
     public class SharesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;

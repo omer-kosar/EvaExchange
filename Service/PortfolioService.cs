@@ -27,6 +27,7 @@ namespace Service
 
         public async Task<PortfolioDto> CreatePortfolioAsync(PortfolioForCreationDto portfolio)
         {
+            await CheckIfUserExist(portfolio.UserId, false);
             var portfolioEntity = _mapper.Map<Portfolio>(portfolio);
             _repository.Portfolio.CreatePortfolioAsync(portfolioEntity);
             await _repository.SaveAsync();
@@ -125,6 +126,11 @@ namespace Service
             if (shareInPortfolio is null)
                 throw new ShareNotFoundInPortfolioException(portfolioId, shareId);
         }
-
+        private async Task CheckIfUserExist(int userId, bool trackChanges)
+        {
+            var user = _repository.Users.GetUserAsync(userId, trackChanges);
+            if (user is null)
+                throw new UserNotFoundException(userId);
+        }
     }
 }
