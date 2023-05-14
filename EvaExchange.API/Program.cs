@@ -12,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+});
 builder.Services.AddDbContext<EvaExchangeContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
 
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
@@ -32,6 +36,7 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 app.ConfigureExceptionHandler();
 
+app.UseCors("CorsPolicy");
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
