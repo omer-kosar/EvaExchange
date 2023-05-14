@@ -14,7 +14,10 @@ namespace EvaExchange.API.Controllers
     public class PortfoliosController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
-
+        //todo:add postgre support
+        //tod: add versioning
+        //todo:add serilog
+        //todo: add business rule for trade selling that shows whether the shares availabel for selling or not
         public PortfoliosController(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
