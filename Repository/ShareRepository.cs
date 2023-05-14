@@ -16,7 +16,7 @@ namespace Repository
 
         }
 
-        public void CreateShare(Share share) => Create(share);
+        public void CreateShareAsync(Share share) => Create(share);
 
         public async Task<Share> GetShareAsync(int shareId, bool trackChanges) => await FindByCondition(share => share.Id == shareId, trackChanges)?.SingleOrDefaultAsync();
 

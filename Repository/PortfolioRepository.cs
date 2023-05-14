@@ -16,7 +16,7 @@ namespace Repository
 
         }
 
-        public void CreatePortfolio(Portfolio portfolio) => Create(portfolio);
+        public void CreatePortfolioAsync(Portfolio portfolio) => Create(portfolio);
         public async Task<Portfolio> GetPortfolioAsync(int portfolioId, bool trackChanges) => await FindByCondition(portfolio => portfolio.Id == portfolioId, trackChanges)?.SingleOrDefaultAsync();
 
     }

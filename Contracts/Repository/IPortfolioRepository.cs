@@ -9,7 +9,7 @@ namespace Contracts.Repository
 {
     public interface IPortfolioRepository
     {
-        void CreatePortfolio(Portfolio portfolio);
+        void CreatePortfolioAsync(Portfolio portfolio);
         Task<Portfolio> GetPortfolioAsync(int portfolioId, bool trackChanges);
 
     }

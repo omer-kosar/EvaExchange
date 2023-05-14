@@ -9,6 +9,8 @@ namespace Contracts.Repository
 {
     public interface ISharePriceRepository
     {
-        void CreateSharePrice(SharePrice sharePrice);
+        Task<List<SharePrice>> GetAllSharePricesByShareIdAsync(int shareId, bool trackChanges);
+        Task<SharePrice> GetLatestSharePriceByShareIdAsync(int shareId, bool trackChanges);
+        void CreateSharePriceAsync(SharePrice sharePrice);
     }
 }

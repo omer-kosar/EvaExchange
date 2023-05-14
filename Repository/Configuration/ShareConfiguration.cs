@@ -24,7 +24,6 @@ namespace Repository.Configuration
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                builder.Property(e => e.LatestPrice).HasColumnType("decimal(18, 2)");
 
                 builder.Property(e => e.Symbol)
                     .HasMaxLength(3)

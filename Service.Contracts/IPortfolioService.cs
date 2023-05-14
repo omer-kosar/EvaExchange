@@ -1,5 +1,6 @@
 ﻿using Shared.DataTransferObjects.Portfolio;
 using Shared.DataTransferObjects.Share;
+using Shared.DataTransferObjects.Trade;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Service.Contracts
     {
         Task<PortfolioDto> CreatePortfolioAsync(PortfolioForCreationDto portfolio);
         Task<PortfolioDto> GetPortfolioAsync(int id, bool trackChanges);
+        Task<ShareSummaryForTradeDto> BuyShare(TradeDto trade, bool trackChanges);
     }
 }

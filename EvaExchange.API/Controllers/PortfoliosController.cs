@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects.Portfolio;
 using Shared.DataTransferObjects.Share;
+using Shared.DataTransferObjects.Trade;
 
 namespace EvaExchange.API.Controllers
 {
@@ -29,6 +30,13 @@ namespace EvaExchange.API.Controllers
         {
             var createdPortfolio = await _serviceManager.PortfolioService.CreatePortfolioAsync(portfolio);
             return CreatedAtRoute("PortfolioById", new { id = createdPortfolio.Id }, createdPortfolio);
+        }
+
+        [HttpPost("BuyShare")]
+        public async Task<IActionResult> BuyShare(TradeDto trade)
+        {
+            var result = await _serviceManager.PortfolioService.BuyShare(trade, true);
+            return NoContent();
         }
     }
 }

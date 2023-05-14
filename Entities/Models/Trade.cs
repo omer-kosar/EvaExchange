@@ -11,7 +11,7 @@ namespace Entities.Models
         public int TradeType { get; set; }
         public int Quantity { get; set; }
         public decimal TradePrice { get; set; }
-        public DateTime TradeDate { get; set; }
+        public DateTime TradeDate { get; set; } = DateTime.Now;
 
         public virtual Share? Share { get; set; }
         public virtual EvaUser? User { get; set; }

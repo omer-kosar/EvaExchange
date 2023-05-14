@@ -1,5 +1,6 @@
 ﻿using Contracts.Repository;
 using Entities.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,9 @@ namespace Repository
         {
 
         }
+
+        public void CreateShareInPortfolioAsync(ShareInPortfolio shareInPortfolio) => Create(shareInPortfolio);
+        public async Task<ShareInPortfolio> GetShareInPortfolioByShareIdAsync(int portfolioId, int shareId, bool trackChanges) => 
+            await FindByCondition(sharePrice => sharePrice.PortfolioId == portfolioId && sharePrice.ShareId == shareId, trackChanges).SingleOrDefaultAsync();
     }
 }

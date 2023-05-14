@@ -15,7 +15,6 @@ namespace Entities.Models
         public int Id { get; set; }
         public string Symbol { get; set; } = null!;
         public string Description { get; set; } = null!;
-        public decimal LatestPrice { get; set; }
 
         public virtual ICollection<ShareInPortfolio> ShareInPortfolios { get; set; }
         public virtual ICollection<SharePrice> SharePrices { get; set; }

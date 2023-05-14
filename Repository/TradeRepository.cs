@@ -14,5 +14,7 @@ namespace Repository
         {
 
         }
+
+        public void CreateTradeAsync(Trade trade) => Create(trade);
     }
 }

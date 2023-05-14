@@ -17,7 +17,6 @@ namespace Repository.Configuration
 
             builder.ToTable("Portfolio");
 
-            builder.Property(e => e.Balance).HasColumnType("decimal(18, 2)");
 
             builder.Property(e => e.PortfolioName)
                 .HasMaxLength(50)

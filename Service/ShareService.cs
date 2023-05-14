@@ -27,7 +27,7 @@ namespace Service
         {
             await CheckShareIfExistsWithTheSameSymbol(share.Symbol, false);
             var shareEntity = _mapper.Map<Share>(share);
-            _repository.Share.CreateShare(shareEntity);
+            _repository.Share.CreateShareAsync(shareEntity);
             await _repository.SaveAsync();
             var shareReturnEntity = _mapper.Map<ShareDto>(shareEntity);
             return shareReturnEntity;
@@ -40,12 +40,19 @@ namespace Service
             return shareDto;
         }
 
-        public async Task UpdateShareAsync(int id,ShareForUpdateDto share,bool trackChanges)
+        public async Task UpdateShareAsync(int id, ShareForUpdateDto share, bool trackChanges)
         {
             await CheckShareIfExists(id, trackChanges);
-            await CheckShareIfExistsWithTheSameSymbol(share.Symbol,trackChanges);
+            //await CheckShareIfExistsWithTheSameSymbol(share.Symbol,trackChanges);
             var shareEntity = await GetShareByIdAsync(id, trackChanges);
             _mapper.Map(share, shareEntity);
+            await _repository.SaveAsync();
+        }
+        public async Task CreateSharePriceAsync(SharePriceForCreationDto sharePrice)
+        {
+            await CheckShareIfExists(sharePrice.ShareId, false);
+            var sharePriceEntity = _mapper.Map<SharePrice>(sharePrice);
+            _repository.SharePrice.CreateSharePriceAsync(sharePriceEntity);
             await _repository.SaveAsync();
         }
         private async Task<Share> GetShareByIdAsync(int id, bool trackChanges)

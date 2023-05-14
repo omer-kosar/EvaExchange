@@ -28,12 +28,20 @@ namespace EvaExchange.API.Controllers
             var createdShare = await _serviceManager.ShareService.CreateShareAsync(share);
             return CreatedAtRoute("ShareById", new { id = createdShare.Id }, createdShare);
         }
+        [HttpPost("createSharePrice")]
+        public async Task<IActionResult> CreateSharePrice([FromBody] SharePriceForCreationDto sharePrice)
+        {
+            await _serviceManager.ShareService.CreateSharePriceAsync(sharePrice);
+            return NoContent();
+        }
+
         [HttpPut("{id:int}")]
-        public async Task<IActionResult> UpdateSharePrice(int id, [FromBody] ShareForUpdateDto share)
+        public async Task<IActionResult> UpdateShare(int id, [FromBody] ShareForUpdateDto share)
         {
             await _serviceManager.ShareService.UpdateShareAsync(id, share, true);
             return NoContent();
         }
+
         //todo: delete will be written
     }
 }

@@ -12,5 +12,6 @@ namespace Service.Contracts
         Task<ShareDto> CreateShareAsync(ShareForCreationDto company);
         Task<ShareDto> GetShareAsync(int id, bool trackChanges);
         Task UpdateShareAsync(int id, ShareForUpdateDto share, bool trackChanges);
+        Task CreateSharePriceAsync(SharePriceForCreationDto sharePrice);
     }
 }
