@@ -24,6 +24,7 @@ namespace Repository
             _portfolioRepository = new Lazy<IPortfolioRepository>(() => new PortfolioRepository(evaExchangeContext));
             _shareInPortfolioRepository = new Lazy<IShareInPortfolioRepository>(() => new ShareInPortfolioRepository(evaExchangeContext));
             _sharePriceRepository = new Lazy<ISharePriceRepository>(() => new SharePriceRepository(evaExchangeContext));
+            _shareRepository = new Lazy<IShareRepository>(() => new ShareRepository(evaExchangeContext));
             _tradeRepository = new Lazy<ITradeRepository>(() => new TradeRepository(evaExchangeContext));
         }
 
