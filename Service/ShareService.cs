@@ -3,7 +3,7 @@ using Contracts.Repository;
 using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.Share;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,9 +28,8 @@ namespace Service
             await CheckShareIfExistsWithTheSameSymbol(share.Symbol, false);
             var shareEntity = _mapper.Map<Share>(share);
             _repository.Share.CreateShare(shareEntity);
-            var shareReturnEntity = _mapper.Map<ShareDto>(shareEntity);
             await _repository.SaveAsync();
-
+            var shareReturnEntity = _mapper.Map<ShareDto>(shareEntity);
             return shareReturnEntity;
         }
 

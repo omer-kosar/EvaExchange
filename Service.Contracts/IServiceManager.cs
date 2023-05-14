@@ -9,5 +9,6 @@ namespace Service.Contracts
     public interface IServiceManager
     {
         IShareService ShareService { get; }
+        IPortfolioService PortfolioService { get; }
     }
 }

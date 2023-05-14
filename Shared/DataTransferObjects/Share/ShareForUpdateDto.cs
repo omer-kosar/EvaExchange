@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared.DataTransferObjects
+namespace Shared.DataTransferObjects.Share
 {
-    public record ShareDto
+    public record ShareForUpdateDto
     {
-        public int Id { get; set; }
         public string Symbol { get; set; } = null!;
         public string Description { get; set; } = null!;
         public decimal LatestPrice { get; set; }
+        public IEnumerable<SharePriceForCreationDto> SharePrices { get; set; }
     }
 }

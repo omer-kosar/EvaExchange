@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Entities.Models;
-using Shared.DataTransferObjects;
+using Shared.DataTransferObjects.Share;
 
-namespace EvaExchange.API.Profiles
+namespace EvaExchange.API.Profiles.Shares
 {
-    public class SharePriceProfile:Profile
+    public class SharePriceProfile : Profile
     {
         public SharePriceProfile()
         {
