@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts
+namespace Contracts.Repository
 {
-    public interface IEvaUserRepository
+    public interface IShareInPortfolioRepository
     {
     }
 }
