@@ -13,7 +13,6 @@ namespace EvaExchange.API.Controllers
     public class PortfoliosController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
-        //todo:add postgre support
         //tod: add versioning
         //todo:add serilog
         public PortfoliosController(IServiceManager serviceManager)

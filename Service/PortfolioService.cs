@@ -50,6 +50,7 @@ namespace Service
             if (!isShareInPortfolio)
                 AddShareToPortfolio(trade);
             var tradeEntity = await GetTradeEntityFromTradeDto(trade, trackChanges);
+            tradeEntity.TradeType = (int)TradeType.BUY;
             _repository.Trade.CreateTradeAsync(tradeEntity);
             await _repository.SaveAsync();
         }
@@ -66,6 +67,7 @@ namespace Service
             if (!isShareAvailableForSelling)
                 throw new AvailabeShareDoesNotExistForSellingBadRequest();
             var tradeEntity = await GetTradeEntityFromTradeDto(trade, trackChanges);
+            tradeEntity.TradeType = (int)TradeType.SELL;
             _repository.Trade.CreateTradeAsync(tradeEntity);
             bool isShareStillExistForSelling = shareSummary.AvailableQuantityForSell > trade.Quantity;
             if (!isShareStillExistForSelling)

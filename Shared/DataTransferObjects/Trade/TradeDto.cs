@@ -13,6 +13,5 @@ namespace Shared.DataTransferObjects.Trade
         public int UserId { get; set; }
         public int ShareId { get; set; }
         public int Quantity { get; set; }
-        public TradeType TradeType { get; set; }
     }
 }

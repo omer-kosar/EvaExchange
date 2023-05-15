@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "22d2ae31-66d7-4def-9bb8-44b5594622d0",
+		"name": "EvaExhangeAPITest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Buy",
+			"item": [
+				{
+					"name": "BuyShare",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"portfolioId\": 1,\r\n  \"userId\": 1,\r\n  \"shareId\": 1,\r\n  \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7146/api/portfolios/buyshare",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7146",
+							"path": [
+								"api",
+								"portfolios",
+								"buyshare"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuySharePortfolioNonExist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"portfolioId\": 10,\r\n  \"userId\": 1,\r\n  \"shareId\": 1,\r\n  \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7146/api/portfolios/buyshare",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7146",
+							"path": [
+								"api",
+								"portfolios",
+								"buyshare"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BuyShareNonExist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"portfolioId\": 1,\r\n  \"userId\": 1,\r\n  \"shareId\": 10,\r\n  \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7146/api/portfolios/buyshare",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7146",
+							"path": [
+								"api",
+								"portfolios",
+								"buyshare"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sell",
+			"item": [
+				{
+					"name": "SellShare",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"portfolioId\": 1,\r\n  \"userId\": 1,\r\n  \"shareId\": 1,\r\n  \"quantity\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7146/api/portfolios/sellshare",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7146",
+							"path": [
+								"api",
+								"portfolios",
+								"sellshare"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SellSharePortfolioNonExist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"portfolioId\": 10,\r\n  \"userId\": 1,\r\n  \"shareId\": 1,\r\n  \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7146/api/portfolios/sellshare",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7146",
+							"path": [
+								"api",
+								"portfolios",
+								"sellshare"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SellShareNonExist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"portfolioId\": 1,\r\n  \"userId\": 1,\r\n  \"shareId\": 10,\r\n  \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7146/api/portfolios/sellshare",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7146",
+							"path": [
+								"api",
+								"portfolios",
+								"sellshare"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SellShareNonExistInPortfolio",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"portfolioId\": 2,\r\n  \"userId\": 2,\r\n  \"shareId\": 3,\r\n  \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7146/api/portfolios/sellshare",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7146",
+							"path": [
+								"api",
+								"portfolios",
+								"sellshare"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SellShareNumberQuantityNonSufficient",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"portfolioId\": 1,\r\n  \"userId\": 1,\r\n  \"shareId\": 1,\r\n  \"quantity\": 100\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7146/api/portfolios/sellshare",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7146",
+							"path": [
+								"api",
+								"portfolios",
+								"sellshare"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
