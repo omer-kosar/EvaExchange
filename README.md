@@ -7,8 +7,10 @@ Entity Framework Core 6
 Swagger for API documentation
 
 How to run:
-git pull https://github.com/omer-kosar/EvaExchange.git
+git clone https://github.com/omer-kosar/EvaExchange.git
 
 dotnet build
 
-dotnet ef database update //this command will create database and run migrations configuration and then add bulk records
+IN Terminal run dotnet ef database update //this command will create database and run migrations configuration and then add bulk records
+
+IN Package Manager Console run update-database

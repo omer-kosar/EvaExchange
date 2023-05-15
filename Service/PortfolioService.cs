@@ -6,6 +6,7 @@ using Service.Contracts;
 using Shared.DataTransferObjects.Portfolio;
 using Shared.DataTransferObjects.Share;
 using Shared.DataTransferObjects.Trade;
+using Shared.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,7 @@ namespace Service
             var portfolioDto = _mapper.Map<PortfolioDto>(portfolio);
             return portfolioDto;
         }
-        public async Task<ShareSummaryForTradeDto> BuyShare(TradeDto trade, bool trackChanges)
+        public async Task BuyShare(TradeDto trade, bool trackChanges)
         {
             await CheckIfPortfolioExist(trade.PortfolioId, trackChanges);
             await CheckIfShareExist(trade.ShareId, trackChanges);
@@ -51,18 +52,27 @@ namespace Service
             var tradeEntity = await GetTradeEntityFromTradeDto(trade, trackChanges);
             _repository.Trade.CreateTradeAsync(tradeEntity);
             await _repository.SaveAsync();
-            //todo:map trade summary
-            return new ShareSummaryForTradeDto();
         }
 
         public async Task SellShare(TradeDto trade, bool trackChanges)
         {
-            await CheckIfShareExistInPortfolio(trade.PortfolioId, trade.ShareId, trackChanges);
             await CheckIfPortfolioExist(trade.PortfolioId, trackChanges);
-            //todo: check if shell is sufficient for sale 
-            //todo: if quantity is equal zero after sell extract share from portfolio
+            await CheckIfShareExist(trade.ShareId, trackChanges);
+            await CheckIfShareExistInPortfolio(trade.PortfolioId, trade.ShareId, trackChanges);
+            var shareSummary = await GetShareSummary(trade.UserId, trade.ShareId, trackChanges);
+            if (shareSummary is null)
+                throw new ShareNotFoundInTradeException(trade.ShareId);
+            bool isShareAvailableForSelling = shareSummary.AvailableQuantityForSell >= trade.Quantity;
+            if (!isShareAvailableForSelling)
+                throw new AvailabeShareDoesNotExistForSellingBadRequest();
             var tradeEntity = await GetTradeEntityFromTradeDto(trade, trackChanges);
             _repository.Trade.CreateTradeAsync(tradeEntity);
+            bool isShareStillExistForSelling = shareSummary.AvailableQuantityForSell > trade.Quantity;
+            if (!isShareStillExistForSelling)
+            {
+                var shareInPortfolio = await GetShareInPortfolioByShareId(trade.PortfolioId, trade.ShareId, trackChanges);
+                _repository.ShareInPortfolioRepository.DeleteShareInPortfolio(shareInPortfolio);
+            }
             await _repository.SaveAsync();
         }
         private async Task<Trade> GetTradeEntityFromTradeDto(TradeDto trade, bool trackChanges)
@@ -131,6 +141,12 @@ namespace Service
             var user = _repository.Users.GetUserAsync(userId, trackChanges);
             if (user is null)
                 throw new UserNotFoundException(userId);
+        }
+
+        private async Task<ShareSummaryForTradeDto> GetShareSummary(int userId, int shareId, bool trackChanges)
+        {
+            var shareSummary = await _repository.Trade.GetShareSummaryForTradeSelling(userId, shareId, trackChanges);
+            return shareSummary;
         }
     }
 }

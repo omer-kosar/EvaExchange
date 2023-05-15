@@ -8,8 +8,9 @@ namespace Shared.DataTransferObjects.Share
 {
     public class ShareSummaryForTradeDto
     {
-        public string Symbol { get; set; }
-        public int Quantity { get; set; }
-        public decimal Balance { get; set; }
+        public int ShareId { get; set; }
+        public int BoughtQuantity { get; set; }
+        public int SoldQuantity { get; set; }
+        public int AvailableQuantityForSell => BoughtQuantity - SoldQuantity;
     }
 }

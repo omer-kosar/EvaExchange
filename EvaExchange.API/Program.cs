@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Repository;
 using Service;
 using Service.Contracts;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
 builder.Services.AddDbContext<EvaExchangeContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
+//builder.Services.AddDbContext<EvaExchangeContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("postgreSqlConnection")));
 
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();

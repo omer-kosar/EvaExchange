@@ -13,7 +13,7 @@ namespace Service.Contracts
     {
         Task<PortfolioDto> CreatePortfolioAsync(PortfolioForCreationDto portfolio);
         Task<PortfolioDto> GetPortfolioAsync(int id, bool trackChanges);
-        Task<ShareSummaryForTradeDto> BuyShare(TradeDto trade, bool trackChanges);
+        Task BuyShare(TradeDto trade, bool trackChanges);
         Task SellShare(TradeDto trade, bool trackChanges);
     }
 }

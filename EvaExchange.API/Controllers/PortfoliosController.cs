@@ -10,14 +10,12 @@ namespace EvaExchange.API.Controllers
 {
     [Route("api/portfolios")]
     [ApiController]
-    [ServiceFilter(typeof(ValidationFilterAttribute))]
     public class PortfoliosController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
         //todo:add postgre support
         //tod: add versioning
         //todo:add serilog
-        //todo: add business rule for trade selling that shows whether the shares availabel for selling or not
         public PortfoliosController(IServiceManager serviceManager)
         {
             _serviceManager = serviceManager;
@@ -31,6 +29,7 @@ namespace EvaExchange.API.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreatePortfolio([FromBody] PortfolioForCreationDto portfolio)
         {
             var createdPortfolio = await _serviceManager.PortfolioService.CreatePortfolioAsync(portfolio);
@@ -38,12 +37,14 @@ namespace EvaExchange.API.Controllers
         }
 
         [HttpPost("BuyShare")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> BuyShare(TradeDto trade)
         {
             await _serviceManager.PortfolioService.BuyShare(trade, true);
             return NoContent();
         }
         [HttpPost("SellShare")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> SellShare(TradeDto trade)
         {
             await _serviceManager.PortfolioService.SellShare(trade, true);

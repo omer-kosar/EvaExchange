@@ -8,7 +8,6 @@ namespace EvaExchange.API.Controllers
 {
     [Route("api/shares")]
     [ApiController]
-    [ServiceFilter(typeof(ValidationFilterAttribute))]
     public class SharesController : ControllerBase
     {
         private readonly IServiceManager _serviceManager;
@@ -25,12 +24,14 @@ namespace EvaExchange.API.Controllers
             return Ok(shareDto);
         }
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateShare([FromBody] ShareForCreationDto share)
         {
             var createdShare = await _serviceManager.ShareService.CreateShareAsync(share);
             return CreatedAtRoute("ShareById", new { id = createdShare.Id }, createdShare);
         }
         [HttpPost("createSharePrice")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> CreateSharePrice([FromBody] SharePriceForCreationDto sharePrice)
         {
             await _serviceManager.ShareService.CreateSharePriceAsync(sharePrice);
@@ -38,12 +39,12 @@ namespace EvaExchange.API.Controllers
         }
 
         [HttpPut("{id:int}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public async Task<IActionResult> UpdateShare(int id, [FromBody] ShareForUpdateDto share)
         {
             await _serviceManager.ShareService.UpdateShareAsync(id, share, true);
             return NoContent();
         }
-
         //todo: delete will be written
     }
 }
