@@ -27,6 +27,11 @@ namespace Repository.Configuration
                 .HasForeignKey(d => d.UserId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Portfolio_User_UserId");
+            builder.HasData(
+                new Portfolio { Id = 1, PortfolioName = "Joh's Portflio", UserId = 1 },
+                new Portfolio { Id = 2, PortfolioName = "Bob's Portflio", UserId = 2 },
+                new Portfolio { Id = 3, PortfolioName = "Alice's Portflio", UserId = 3 }
+                );
         }
     }
 }

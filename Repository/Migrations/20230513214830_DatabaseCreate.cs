@@ -69,7 +69,7 @@ namespace Repository.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ShareId = table.Column<int>(type: "int", nullable: true),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PriceDate = table.Column<DateTime>(type: "datetime", nullable: false)
+                    PriceDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -92,7 +92,7 @@ namespace Repository.Migrations
                     TradeType = table.Column<int>(type: "int", nullable: false),
                     Quantity = table.Column<int>(type: "int", nullable: false),
                     TradePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    TradeDate = table.Column<DateTime>(type: "datetime", nullable: false)
+                    TradeDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {

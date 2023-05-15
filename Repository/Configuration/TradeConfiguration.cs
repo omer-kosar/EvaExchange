@@ -28,6 +28,12 @@ namespace Repository.Configuration
                 .WithMany(p => p.Trades)
                 .HasForeignKey(d => d.UserId)
                 .HasConstraintName("FK_Trade_User_UserId");
+            builder.HasData(
+                new Trade { Id = 1, UserId = 1, ShareId = 1, TradeType = 1, Quantity = 20, TradePrice = 10, TradeDate = DateTime.Now },
+                new Trade { Id = 2, UserId = 1, ShareId = 2, TradeType = 1, Quantity = 30, TradePrice = 10, TradeDate = DateTime.Now },
+                new Trade { Id = 3, UserId = 2, ShareId = 1, TradeType = 1, Quantity = 50, TradePrice = 15, TradeDate = DateTime.Now },
+                new Trade { Id = 4, UserId = 2, ShareId = 2, TradeType = 1, Quantity = 60, TradePrice = 15, TradeDate = DateTime.Now }
+                );
         }
     }
 }

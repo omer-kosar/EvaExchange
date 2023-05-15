@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Repository;
@@ -11,9 +12,10 @@ using Repository;
 namespace Repository.Migrations
 {
     [DbContext(typeof(EvaExchangeContext))]
-    partial class EvaExchangeContextModelSnapshot : ModelSnapshot
+    [Migration("20230515105136_PriceDateDeletedFromSharePriceConfiguration")]
+    partial class PriceDateDeletedFromSharePriceConfiguration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,26 +118,6 @@ namespace Repository.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Portfolio", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            PortfolioName = "Joh's Portflio",
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            PortfolioName = "Bob's Portflio",
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            PortfolioName = "Alice's Portflio",
-                            UserId = 3
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Share", b =>
@@ -207,32 +189,6 @@ namespace Repository.Migrations
                     b.HasIndex("ShareId");
 
                     b.ToTable("ShareInPortfolio", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            PortfolioId = 1,
-                            ShareId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            PortfolioId = 1,
-                            ShareId = 2
-                        },
-                        new
-                        {
-                            Id = 3,
-                            PortfolioId = 2,
-                            ShareId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            PortfolioId = 2,
-                            ShareId = 2
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.SharePrice", b =>
@@ -263,42 +219,42 @@ namespace Repository.Migrations
                         {
                             Id = 1,
                             Price = 10m,
-                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 15, 14, 19, 34, 358, DateTimeKind.Unspecified).AddTicks(8055), new TimeSpan(0, 3, 0, 0, 0)),
+                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 15, 13, 51, 36, 229, DateTimeKind.Unspecified).AddTicks(9648), new TimeSpan(0, 3, 0, 0, 0)),
                             ShareId = 1
                         },
                         new
                         {
                             Id = 2,
                             Price = 20m,
-                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 14, 14, 19, 34, 358, DateTimeKind.Unspecified).AddTicks(8063), new TimeSpan(0, 3, 0, 0, 0)),
+                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 14, 13, 51, 36, 229, DateTimeKind.Unspecified).AddTicks(9659), new TimeSpan(0, 3, 0, 0, 0)),
                             ShareId = 1
                         },
                         new
                         {
                             Id = 3,
                             Price = 15m,
-                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 15, 14, 19, 34, 358, DateTimeKind.Unspecified).AddTicks(8074), new TimeSpan(0, 3, 0, 0, 0)),
+                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 15, 13, 51, 36, 229, DateTimeKind.Unspecified).AddTicks(9665), new TimeSpan(0, 3, 0, 0, 0)),
                             ShareId = 2
                         },
                         new
                         {
                             Id = 4,
                             Price = 30m,
-                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 13, 14, 19, 34, 358, DateTimeKind.Unspecified).AddTicks(8077), new TimeSpan(0, 3, 0, 0, 0)),
+                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 13, 13, 51, 36, 229, DateTimeKind.Unspecified).AddTicks(9667), new TimeSpan(0, 3, 0, 0, 0)),
                             ShareId = 2
                         },
                         new
                         {
                             Id = 5,
                             Price = 10m,
-                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 15, 14, 19, 34, 358, DateTimeKind.Unspecified).AddTicks(8079), new TimeSpan(0, 3, 0, 0, 0)),
+                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 15, 13, 51, 36, 229, DateTimeKind.Unspecified).AddTicks(9669), new TimeSpan(0, 3, 0, 0, 0)),
                             ShareId = 3
                         },
                         new
                         {
                             Id = 6,
                             Price = 12m,
-                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 13, 14, 19, 34, 358, DateTimeKind.Unspecified).AddTicks(8081), new TimeSpan(0, 3, 0, 0, 0)),
+                            PriceDate = new DateTimeOffset(new DateTime(2023, 5, 13, 13, 51, 36, 229, DateTimeKind.Unspecified).AddTicks(9671), new TimeSpan(0, 3, 0, 0, 0)),
                             ShareId = 3
                         });
                 });
@@ -336,48 +292,6 @@ namespace Repository.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Trade", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Quantity = 20,
-                            ShareId = 1,
-                            TradeDate = new DateTime(2023, 5, 15, 14, 19, 34, 359, DateTimeKind.Local).AddTicks(256),
-                            TradePrice = 10m,
-                            TradeType = 1,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Quantity = 30,
-                            ShareId = 2,
-                            TradeDate = new DateTime(2023, 5, 15, 14, 19, 34, 359, DateTimeKind.Local).AddTicks(258),
-                            TradePrice = 10m,
-                            TradeType = 1,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Quantity = 50,
-                            ShareId = 1,
-                            TradeDate = new DateTime(2023, 5, 15, 14, 19, 34, 359, DateTimeKind.Local).AddTicks(260),
-                            TradePrice = 15m,
-                            TradeType = 1,
-                            UserId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Quantity = 60,
-                            ShareId = 2,
-                            TradeDate = new DateTime(2023, 5, 15, 14, 19, 34, 359, DateTimeKind.Local).AddTicks(261),
-                            TradePrice = 15m,
-                            TradeType = 1,
-                            UserId = 2
-                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Portfolio", b =>

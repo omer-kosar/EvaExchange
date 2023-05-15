@@ -8,7 +8,7 @@ namespace Entities.Models
         public int Id { get; set; }
         public int? ShareId { get; set; }
         public decimal Price { get; set; }
-        public DateTime PriceDate { get; set; }
+        public DateTimeOffset PriceDate { get; set; } = DateTimeOffset.Now;
 
         public virtual Share? Share { get; set; }
     }

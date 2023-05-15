@@ -19,7 +19,7 @@ namespace Repository.Configuration
 
             builder.Property(e => e.Price).HasColumnType("decimal(18, 2)");
 
-            builder.Property(e => e.PriceDate).HasColumnType("datetime");
+            //builder.Property(e => e.PriceDate);
 
             builder.HasOne(d => d.Share)
                 .WithMany(p => p.SharePrices)

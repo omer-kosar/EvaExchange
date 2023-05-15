@@ -17,9 +17,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
-builder.Services.AddDbContext<EvaExchangeContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
-//builder.Services.AddDbContext<EvaExchangeContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("postgreSqlConnection")));
-
+//builder.Services.AddDbContext<EvaExchangeContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("sqlConnection")));
+builder.Services.AddDbContext<EvaExchangeContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("postgreSqlConnection")));
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 builder.Services.AddScoped<IRepositoryManager, RepositoryManager>();
 builder.Services.AddScoped<IServiceManager, ServiceManager>();
 builder.Services.Configure<ApiBehaviorOptions>(options =>
